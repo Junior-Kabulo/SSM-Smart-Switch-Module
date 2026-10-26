@@ -1,104 +1,139 @@
 # SSM — Smart Switch Module
 
-**Custom PCB Design | AC Power Switching | Embedded Systems | Altium Designer**
+**Custom PCB Design | Embedded Systems | Power Electronics | Multi-Board Integration**
+
+Designed by **Junior Kabulo Sungu**, Mechatronics Engineering Student.
 
 ## 1. Project Overview
 
-The **Smart Switch Module (SSM)** is a compact electronic switching system designed around two separate printed circuit boards (PCBs): a high-voltage power board and a low-voltage control board.
+The **Smart Switch Module (SSM)** is an electronics design project focused on the development of a compact power switching system based on custom-designed printed circuit boards (PCBs).
 
-The project focuses on PCB design, power and control circuit integration, and multi-board assembly using Altium Designer.
+The hardware architecture is divided into two main boards: a power board responsible for the switching circuitry and a control board dedicated to the low-voltage electronics. A multi-board project is used to represent their integration into a single system.
 
-The hardware architecture separates the mains power circuitry from the low-voltage embedded control electronics.
+The project covers the electronic design workflow, from schematic capture and component selection to PCB layout, routing, and multi-board assembly, using Altium Designer.
 
 ## 2. Hardware Architecture
 
-The design is organized into three Altium project folders:
+The repository is organized into three Altium project directories.
 
-| Folder | Description |
-|---|---|
-| `SSM_POWER/` | High-voltage power PCB, schematic, and associated design files |
-| `SSM_CONTROL/` | Low-voltage control PCB, microcontroller schematic, and associated design files |
-| `PCB_ASSEM_SSM/` | Multi-board assembly project |
-| `Pictures/` | PCB layouts, routing views, and assembly renders |
+### 2.1 SSM_POWER — Power Board
 
-### Power Board — SSM_POWER
+The power board contains the power switching circuitry and associated components.
 
-The power board contains the mains-side switching circuitry and associated power components.
+Key design considerations include:
+- High-voltage circuit layout and component placement.
+- Power trace sizing and current-carrying capacity.
+- Electrical insulation between hazardous-voltage and low-voltage sections.
+- PCB manufacturability and assembly constraints.
 
-Main design considerations:
-- AC power routing and component placement
-- High-voltage insulation distances
-- PCB layout and manufacturability
-- Separation between hazardous-voltage and low-voltage circuitry
+### 2.2 SSM_CONTROL — Control Board
 
-### Control Board — SSM_CONTROL
+The control board contains the low-voltage electronics and embedded control circuitry.
 
-The control board contains the embedded control electronics and associated low-voltage circuitry.
+Key design considerations include:
+- Schematic capture and component integration.
+- PCB component placement and routing.
+- Control signal routing and interface connections.
+- Separation between control electronics and the power section.
 
-Main design considerations:
-- Microcontroller integration
-- Schematic and PCB layout
-- Component placement and routing
-- Interfaces between the control and power sections
+### 2.3 PCB_ASSEM_SSM — Multi-Board Assembly
 
-### Multi-Board Assembly — PCB_ASSEM_SSM
+The multi-board project represents the integration of the power and control PCBs.
 
-The multi-board project is intended to represent the mechanical and electrical integration of the power and control PCBs into a single system.
+It supports the visualization and organization of the board-level assembly within the Altium Designer environment.
 
-## 3. Design Tools
+## 3. PCB Design Considerations
 
-- **Altium Designer** — schematic capture, PCB layout, libraries, and multi-board assembly
-- **Git / GitHub** — version control and project documentation
+### 3.1 Clearance Distance
 
-## 4. Repository Structure
+**Clearance** is the shortest distance through air between two conductive parts at different electrical potentials.
+
+It helps prevent electrical breakdown through air and must be selected according to working voltage, transient overvoltages, pollution conditions, and other applicable design requirements.
+
+### 3.2 Creepage Distance
+
+**Creepage** is the shortest distance along the surface of an insulating material between two conductive parts.
+
+It helps limit surface leakage and tracking. Its required value depends on factors such as working voltage, pollution degree, and the insulation material's properties.
+
+### 3.3 Power Trace Sizing
+
+PCB copper traces must carry the expected current without exceeding the permitted temperature rise.
+
+Trace width selection depends on copper thickness, current, allowable temperature rise, and whether the trace is on an external or internal layer.
+
+### 3.4 High-Voltage and Low-Voltage Separation
+
+The layout must maintain appropriate separation between hazardous-voltage circuitry and accessible low-voltage electronics.
+
+The design review should consider:
+- Clearance and creepage distances.
+- Isolation barriers and component placement.
+- Routing near board edges, mounting holes, and connectors.
+- Enclosure and assembly constraints.
+
+## 4. Design Tools
+
+- **Altium Designer:** Schematic capture, PCB layout, component libraries, and multi-board assembly.
+- **Git:** Local version control.
+- **GitHub:** Remote repository hosting and project portfolio.
+
+## 5. Repository Structure
 
 ```text
 SSM-Smart-Switch-Module/
 ├── SSM_POWER/
+│   ├── SSM_POWER.PrjPcb
+│   ├── POWER.SchDoc
+│   └── PCB_HV.PcbDoc
 ├── SSM_CONTROL/
+│   ├── CONTROL_SSM.PrjPcb
+│   ├── MCU.SchDoc
+│   └── PCB_LV.PcbDoc
 ├── PCB_ASSEM_SSM/
+│   └── PCB_ASSEM_SSM.PrjMbd
 ├── Pictures/
 └── README.md
 ```
 
-The project folders contain the native Altium design files and supporting documents. The `Pictures/` folder contains visual documentation of the PCB layouts and assembly.
+*Note: The directory tree highlights the main design files. Additional libraries, manufacturing outputs, and supporting documents may also be present in the repository.*
 
-## 5. PCB Design Considerations
+## 6. Design Standards and References
 
-The design requires particular attention to:
+The following standards provide relevant design guidance:
 
-- **Creepage distance:** the shortest distance along an insulating surface between conductive parts.
-- **Clearance distance:** the shortest distance through air between conductive parts.
-- **Power routing:** conductor width and copper temperature rise under load.
-- **Electrical isolation:** separation of mains-voltage circuitry from accessible low-voltage circuitry.
-- **Manufacturability:** component footprints, routing, soldering access, and board assembly.
+- **IPC-2221 — Generic Standard on Printed Board Design:** General PCB design requirements and layout considerations.
+- **IPC-2152 — Standard for Determining Current-Carrying Capacity in Printed Board Design:** Guidance for evaluating conductor current capacity and temperature rise.
+- **IEC 60664-1 — Insulation Coordination for Equipment Within Low-Voltage Supply Systems:** Guidance for insulation coordination, including clearance and creepage requirements.
 
-Relevant design references include:
+The applicable requirements must be determined from the actual operating conditions, electrical environment, materials, and intended application. Referencing these standards does not, by itself, demonstrate compliance or certification.
 
-- **IPC-2221** — Generic Standard on Printed Board Design.
-- **IPC-2152** — Guidance for determining current-carrying capacity and conductor temperature rise.
-- **IEC 60664-1** — Insulation coordination for equipment within low-voltage systems.
+## 7. Project Status
 
-Applicable requirements depend on the operating voltage, overvoltage category, pollution degree, material properties, and intended product use.
+This repository contains the current Altium design files, supporting documentation, and visual representations of the PCB assembly.
 
-## 6. Project Status
+Electrical validation, design-rule verification, insulation assessment, and manufacturing checks must be completed as applicable before the hardware is used in its intended operating environment.
 
-This repository contains the current PCB design files, supporting documents, and visual representations of the assembly.
+## 8. Safety Notice
 
-Electrical validation, safety verification, and manufacturing qualification must be performed before the module is used in a real mains-powered application.
+**Warning: The power board may operate at hazardous mains voltage.**
 
-## 7. Safety Notice
+Before applying power, verify the electrical ratings of all components, insulation distances, protective measures, PCB layout, and enclosure requirements. Testing must be performed using appropriate safety procedures and equipment.
 
-**Warning: This project involves potentially hazardous mains voltage.**
+This repository is a design project and does not constitute a safety certification.
 
-Do not connect the boards to the mains supply without verifying insulation distances, protective measures, component ratings, enclosure safety, and applicable electrical safety requirements.
+## 9. Author
 
-The presence of a PCB design in this repository does not constitute certification or proof of safe operation.
+**Junior Kabulo Sungu**  
+Mechatronics Engineering Student  
+Areas of interest: Embedded Systems, Electronic Hardware Design, and PCB Engineering.
 
-## 8. Repository
+GitHub: [Junior-Kabulo](https://github.com/Junior-Kabulo)
 
-GitHub: [SSM-Smart-Switch-Module](https://github.com/Junior-Kabulo/SSM-Smart-Switch-Module)
+## 10. Project Repository
+
+[SSM — Smart Switch Module](https://github.com/Junior-Kabulo/SSM-Smart-Switch-Module)
 
 ---
 
-Designed with Altium Designer.
+*Designed with Altium Designer.*
